@@ -1,6 +1,7 @@
-% convert text data(of eeg) to csv file
-data = importdata('EEG_Data.txt');
-csvwrite('dataInCsv.csv', data)
+
+% % convert text data(of eeg) to csv file
+% data = importdata('EEG_Data.txt');
+% csvwrite('dataInCsv.csv', data)
 
 
 %convert csv file to matrix
@@ -37,6 +38,8 @@ for i=1:numRaws
 %         end
     end
 end
+
+xlswrite("Entropy Between 2 waves",EntropyBetween2waves)%save Entropy in Excel file
 SubEntropy=[];
 arrMin=[];
 arrMin2=[];
@@ -50,8 +53,45 @@ for i=1:numRaws
         end
     end
 end
+xlswrite("Subtraction of entropy",SubEntropy)%save  in Excel file
 
-        
+
+%  for i=1:numRaws
+%      k=1;    
+%      flag=0;
+%    
+%      arr=SubEntropy(:,i);
+%       while k<numRaws && flag==0
+%           
+%           
+%             valMax=max(arr)
+%             if  valMax~=0
+% %         
+% %               
+% %                  valMax=max(arr)
+% %                  indexMin=find(arr==valMin);
+%                  indexMax=find(arr==valMax);
+% % 
+% %                arrMin(i)=indexMin;
+% % 
+% %                  arrMin2(i,k)=indexMin;
+%                 arrMax(k,i)=indexMax;
+% %                 
+%                 arr(indexMax)=0;
+%                 k=k+1;
+% %                 
+%             
+%             else
+%                 flag=1;
+%             end
+%       end  
+%  end       
+
+%sort the Subtraction of entropy and get mtrix that 
+[sortVal,sortIndex] = sort(SubEntropy,2);
+indexNull=find(sortVal==0);
+sortIndex(indexNull)=0;
+xlswrite("Sort SubEntropy",sortIndex)%save  in Excel file
 
             
       
