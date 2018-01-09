@@ -29,11 +29,24 @@ for i=1:numRaws
         entropy=entropy1+entropy2;%
         EntropyBetween2waves(i,j)=entropy;
   
-        for k=1:numRaws
-            wave3=  M(k,2:end);
-            entropy3 = wentropy(wave3,entropyType);%%calculate Entropy Between 3 waves
-            entropy=entropy1+entropy2+entropy3;%
-            EntropyBetween3waves(i,j,k)=entropy;
+%         for k=1:numRaws
+%             wave3=  M(k,2:end);
+%             entropy3 = wentropy(wave3,entropyType);%%calculate Entropy Between 3 waves
+%             entropy=entropy1+entropy2+entropy3;%
+%             EntropyBetween3waves(i,j,k)=entropy;
+%         end
+    end
+end
+SubEntropy=[];
+arrMin=[];
+arrMin2=[];
+arrMax=[];
+for i=1:numRaws
+    e1=EntropyBetween2waves(i,i);
+    for j=1:numRaws
+        if i>j
+              e2=EntropyBetween2waves(i,j);
+              SubEntropy(j,i)=abs(abs(e1)-abs(e2));
         end
     end
 end

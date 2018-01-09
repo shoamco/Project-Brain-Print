@@ -5,11 +5,8 @@ csvwrite('dataInCsv.csv', data)
 
 %convert csv file to matrix
 filename = 'dataInCsv.csv';
-M = csvread(filename)
-
-
-filename = 'dataInCsv.csv';
 M = csvread(filename);%convert csv file to matrix
+
 % L=length(M)
 Electrodes=M(:,1);%(to get the first column)all the Electrodes
 numRaws=length(Electrodes);
