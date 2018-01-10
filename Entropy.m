@@ -19,6 +19,7 @@ EntropyBetween3waves=[];
 
 
 entropyType='shannon';
+% entropyType='log energy';
 %calculate entropy 
 for i=1:numRaws
     wave1=  M(i,2:end);%one wave
@@ -47,53 +48,25 @@ arrMax=[];
 for i=1:numRaws
     e1=EntropyBetween2waves(i,i);
     for j=1:numRaws
-        if i>j
+%         if i>j
               e2=EntropyBetween2waves(i,j);
               SubEntropy(j,i)=abs(abs(e1)-abs(e2));
-        end
+%         end
     end
 end
-xlswrite("Subtraction of entropy",SubEntropy)%save  in Excel file
 
-
-%  for i=1:numRaws
-%      k=1;    
-%      flag=0;
-%    
-%      arr=SubEntropy(:,i);
-%       while k<numRaws && flag==0
-%           
-%           
-%             valMax=max(arr)
-%             if  valMax~=0
-% %         
-% %               
-% %                  valMax=max(arr)
-% %                  indexMin=find(arr==valMin);
-%                  indexMax=find(arr==valMax);
-% % 
-% %                arrMin(i)=indexMin;
-% % 
-% %                  arrMin2(i,k)=indexMin;
-%                 arrMax(k,i)=indexMax;
-% %                 
-%                 arr(indexMax)=0;
-%                 k=k+1;
-% %                 
-%             
-%             else
-%                 flag=1;
-%             end
-%       end  
-%  end       
 
 %sort the Subtraction of entropy and get mtrix that 
 [sortVal,sortIndex] = sort(SubEntropy,2);
-indexNull=find(sortVal==0);
-sortIndex(indexNull)=0;
-xlswrite("Sort SubEntropy",sortIndex)%save  in Excel file
+% indexNull=find(sortVal==0);
+% sortIndex(indexNull)=0;
 
-            
+
+%save  matrixs in Excel files
+xlswrite("Subtraction of entropy",SubEntropy)
+xlswrite("Sort SubEntropy",sortIndex)
+xlswrite("sortVal",sortVal)
+         
       
     
 
