@@ -61,7 +61,7 @@ end
 [sortVal,sortIndex] = sort(SubEntropy,2);
 % indexNull=find(sortVal==0);
 % sortIndex(indexNull)=0;
-
+sortIndex
 
 %save  matrixs in Excel files
 xlswrite("Subtraction of entropy",SubEntropy)
